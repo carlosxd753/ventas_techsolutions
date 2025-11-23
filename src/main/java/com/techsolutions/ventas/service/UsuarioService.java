@@ -1,5 +1,9 @@
 package com.techsolutions.ventas.service;
 
+import com.techsolutions.ventas.dto.UsuarioCreateDTO;
+import com.techsolutions.ventas.dto.UsuarioDTO;
+import com.techsolutions.ventas.dto.UsuarioUpdateDTO;
+
 import java.util.List;
 
 public interface UsuarioService {
