@@ -1,5 +1,6 @@
 package com.techsolutions.ventas.model;
 
+import com.techsolutions.ventas.enums.Estado;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,4 +12,5 @@ public class Cliente extends BaseModel{
     private String nombre;
     private String dni;
     private String celular;
+    private Estado estado = Estado.ACTIVO;
 }

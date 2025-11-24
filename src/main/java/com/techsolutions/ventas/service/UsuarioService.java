@@ -10,6 +10,6 @@ public interface UsuarioService {
     List<UsuarioDTO> listarTodos();
     UsuarioDTO obtenerPorId(Long id);
     UsuarioDTO crear(UsuarioCreateDTO dto);
-    UsuarioDTO editar(UsuarioUpdateDTO dto);
-    void borrarPorId(Long id);
+    UsuarioDTO editar(Long id, UsuarioUpdateDTO dto);
+    void deshabilitarPorId(Long id);
 }

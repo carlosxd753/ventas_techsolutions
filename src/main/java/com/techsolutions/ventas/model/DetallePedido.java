@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,9 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class DetallePedido extends BaseModel{
+    @Min(1)
     private int cantidad;
+
     private BigDecimal subTotal;
 
     @ManyToOne

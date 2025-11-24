@@ -1,5 +1,6 @@
 package com.techsolutions.ventas.model;
 
+import com.techsolutions.ventas.enums.Estado;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -29,4 +30,6 @@ public class Usuario extends BaseModel{
     @ManyToOne
     @JoinColumn(name = "id_rol",  nullable = false)
     private Rol rol;
+
+    private Estado estado = Estado.ACTIVO;
 }

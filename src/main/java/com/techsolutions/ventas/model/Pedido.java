@@ -1,10 +1,10 @@
 package com.techsolutions.ventas.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,10 +15,9 @@ public class Pedido extends BaseModel{
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
-
-    @ManyToOne
     @JoinColumn(name = "id_metodo_pago", nullable = false)
     private MetodoPago metodoPago;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetallePedido> detalles;
 }

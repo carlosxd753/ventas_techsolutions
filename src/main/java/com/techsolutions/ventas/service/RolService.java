@@ -9,6 +9,6 @@ public interface RolService {
     List<RolDTO> listarTodos();
     RolDTO obtenerPorId(Long id);
     RolDTO crear(RolRequestDTO dto);
-    RolDTO editar(RolRequestDTO dto);
-    void borrarPorId(Long id);
+    RolDTO editar(Long id, RolRequestDTO dto);
+    void deshabilitarPorId(Long id);
 }
