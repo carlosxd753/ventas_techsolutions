@@ -9,6 +9,6 @@ public interface ProductoService {
     List<ProductoDTO> listarTodos();
     ProductoDTO obtenerPorId(Long id);
     ProductoDTO crear(ProductoRequestDTO dto);
-    ProductoDTO editar(ProductoRequestDTO dto);
-    void borrarPorId(Long id);
+    ProductoDTO editar(Long id, ProductoRequestDTO dto);
+    void deshabilitarPorId(Long id);
 }
