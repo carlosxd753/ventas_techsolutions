@@ -1,6 +1,7 @@
 package com.techsolutions.ventas.service.serviceImpl;
 
 import com.techsolutions.ventas.dto.*;
+import com.techsolutions.ventas.exceptions.EntidadNoEncontradaException;
 import com.techsolutions.ventas.model.*;
 import com.techsolutions.ventas.repository.*;
 import com.techsolutions.ventas.service.PedidoService;

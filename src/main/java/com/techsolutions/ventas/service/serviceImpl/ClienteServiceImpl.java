@@ -4,6 +4,7 @@ import com.techsolutions.ventas.dto.ClienteCreateDTO;
 import com.techsolutions.ventas.dto.ClienteDTO;
 import com.techsolutions.ventas.dto.ClienteUpdateDTO;
 import com.techsolutions.ventas.enums.Estado;
+import com.techsolutions.ventas.exceptions.EntidadNoEncontradaException;
 import com.techsolutions.ventas.model.Cliente;
 import com.techsolutions.ventas.repository.ClienteRepository;
 import com.techsolutions.ventas.service.ClienteService;

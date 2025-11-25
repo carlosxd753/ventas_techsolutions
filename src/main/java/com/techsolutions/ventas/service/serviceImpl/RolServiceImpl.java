@@ -3,6 +3,7 @@ package com.techsolutions.ventas.service.serviceImpl;
 import com.techsolutions.ventas.dto.RolDTO;
 import com.techsolutions.ventas.dto.RolRequestDTO;
 import com.techsolutions.ventas.enums.Estado;
+import com.techsolutions.ventas.exceptions.EntidadNoEncontradaException;
 import com.techsolutions.ventas.model.Rol;
 import com.techsolutions.ventas.repository.RolRepository;
 import com.techsolutions.ventas.service.RolService;
