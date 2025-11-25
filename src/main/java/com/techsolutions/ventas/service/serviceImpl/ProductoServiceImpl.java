@@ -3,6 +3,7 @@ package com.techsolutions.ventas.service.serviceImpl;
 import com.techsolutions.ventas.dto.ProductoDTO;
 import com.techsolutions.ventas.dto.ProductoRequestDTO;
 import com.techsolutions.ventas.enums.Estado;
+import com.techsolutions.ventas.exceptions.EntidadNoEncontradaException;
 import com.techsolutions.ventas.model.Producto;
 import com.techsolutions.ventas.repository.ProductoRepository;
 import com.techsolutions.ventas.service.ProductoService;

@@ -4,6 +4,7 @@ import com.techsolutions.ventas.dto.MetodoPagoCreateDTO;
 import com.techsolutions.ventas.dto.MetodoPagoDTO;
 import com.techsolutions.ventas.dto.MetodoPagoUpdateDTO;
 import com.techsolutions.ventas.enums.Estado;
+import com.techsolutions.ventas.exceptions.EntidadNoEncontradaException;
 import com.techsolutions.ventas.model.MetodoPago;
 import com.techsolutions.ventas.repository.MetodoPagoRepository;
 import com.techsolutions.ventas.service.MetodoPagoService;

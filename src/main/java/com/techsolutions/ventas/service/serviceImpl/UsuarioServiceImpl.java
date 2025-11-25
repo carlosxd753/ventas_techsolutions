@@ -5,6 +5,7 @@ import com.techsolutions.ventas.dto.UsuarioCreateDTO;
 import com.techsolutions.ventas.dto.UsuarioDTO;
 import com.techsolutions.ventas.dto.UsuarioUpdateDTO;
 import com.techsolutions.ventas.enums.Estado;
+import com.techsolutions.ventas.exceptions.EntidadNoEncontradaException;
 import com.techsolutions.ventas.model.Rol;
 import com.techsolutions.ventas.model.Usuario;
 import com.techsolutions.ventas.repository.RolRepository;
