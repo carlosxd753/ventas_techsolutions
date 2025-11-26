@@ -19,6 +19,7 @@ public class ProductoController {
     public List<ProductoDTO> listarProductos(){
         System.out.println("TEST");
         System.out.println("TEST2");
+        System.out.println("TEST3");
         return productoService.listarTodos();
     }
 
