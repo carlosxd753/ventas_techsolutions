@@ -17,6 +17,7 @@ public class ProductoController {
 
     @GetMapping
     public List<ProductoDTO> listarProductos(){
+        System.out.println("TEST");
         return productoService.listarTodos();
     }
 
