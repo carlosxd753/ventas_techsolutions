@@ -30,6 +30,7 @@ public class ProductoServiceImpl implements ProductoService {
                         p.getStock(),
                         p.getPrecioCompra(),
                         p.getStockMinimo(),
+                        p.getImagenUrl(),
                         p.getFecha_creacion()
                 ))
                 .toList();
@@ -47,6 +48,7 @@ public class ProductoServiceImpl implements ProductoService {
                 producto.getStock(),
                 producto.getPrecioCompra(),
                 producto.getStockMinimo(),
+                producto.getImagenUrl(),
                 producto.getFecha_creacion()
         );
     }
@@ -70,6 +72,7 @@ public class ProductoServiceImpl implements ProductoService {
                 productoGuardado.getStock(),
                 productoGuardado.getPrecioCompra(),
                 productoGuardado.getStockMinimo(),
+                productoGuardado.getImagenUrl(),
                 productoGuardado.getFecha_creacion()
         );
     }
@@ -94,6 +97,7 @@ public class ProductoServiceImpl implements ProductoService {
                 productoActualizado.getStock(),
                 productoActualizado.getPrecioCompra(),
                 productoActualizado.getStockMinimo(),
+                productoActualizado.getImagenUrl(),
                 productoActualizado.getFecha_creacion()
         );
     }

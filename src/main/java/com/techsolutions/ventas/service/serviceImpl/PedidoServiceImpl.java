@@ -114,6 +114,7 @@ public class PedidoServiceImpl implements PedidoService {
                                         dp.getProducto().getStock(),
                                         dp.getProducto().getPrecioCompra(),
                                         dp.getProducto().getStockMinimo(),
+                                        dp.getProducto().getImagenUrl(),
                                         dp.getProducto().getFecha_creacion()
                                 ),
                                 dp.getCantidad(),

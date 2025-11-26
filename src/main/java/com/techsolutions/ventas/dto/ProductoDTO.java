@@ -10,6 +10,7 @@ public record ProductoDTO(
         int stock,
         BigDecimal precioCompra,
         int stockMinimo,
+        String imagenUrl,
         LocalDateTime fecha_creacion
 ) {
 }

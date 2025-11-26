@@ -17,4 +17,5 @@ public class Producto extends BaseModel{
     private BigDecimal precioCompra;
     private int stockMinimo;
     private Estado estado = Estado.ACTIVO;
+    private String imagenUrl;
 }
