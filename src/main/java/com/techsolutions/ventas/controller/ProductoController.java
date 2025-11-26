@@ -21,6 +21,7 @@ public class ProductoController {
         System.out.println("TEST2");
         System.out.println("TEST3");
         System.out.println("TEST4");
+        System.out.println("TEST5");
         return productoService.listarTodos();
     }
 
