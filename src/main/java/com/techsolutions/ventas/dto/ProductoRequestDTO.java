@@ -7,6 +7,7 @@ public record ProductoRequestDTO(
         BigDecimal precioVenta,
         int stock,
         BigDecimal precioCompra,
+        String imagenUrl,
         int stockMinimo
 ) {
 }
