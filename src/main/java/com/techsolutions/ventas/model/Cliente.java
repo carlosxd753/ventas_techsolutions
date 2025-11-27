@@ -12,5 +12,6 @@ public class Cliente extends BaseModel{
     private String nombre;
     private String dni;
     private String celular;
+    @Enumerated(EnumType.STRING)
     private Estado estado = Estado.ACTIVO;
 }

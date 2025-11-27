@@ -2,6 +2,8 @@ package com.techsolutions.ventas.model;
 
 import com.techsolutions.ventas.enums.Estado;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,5 +12,6 @@ import lombok.Setter;
 @Setter
 public class MetodoPago extends BaseModel{
     private String nombre;
+    @Enumerated(EnumType.STRING)
     private Estado estado = Estado.ACTIVO;
 }

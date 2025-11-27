@@ -1,10 +1,7 @@
 package com.techsolutions.ventas.model;
 
 import com.techsolutions.ventas.enums.Estado;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,5 +28,6 @@ public class Usuario extends BaseModel{
     @JoinColumn(name = "id_rol",  nullable = false)
     private Rol rol;
 
+    @Enumerated(EnumType.STRING)
     private Estado estado = Estado.ACTIVO;
 }
