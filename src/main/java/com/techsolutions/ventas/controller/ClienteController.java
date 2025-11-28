@@ -6,6 +6,8 @@ import com.techsolutions.ventas.dto.ClienteUpdateDTO;
 import com.techsolutions.ventas.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,28 +19,29 @@ public class ClienteController {
     private final ClienteService clienteService;
 
     @GetMapping
-    public List<ClienteDTO> listarClientes(){
-        return clienteService.listarTodos();
+    public ResponseEntity<List<ClienteDTO>> listarClientes(){
+        return new ResponseEntity<>(clienteService.listarTodos(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ClienteDTO buscarClientePorId(@PathVariable Long id){
-        return clienteService.obtenerPorId(id);
+    public ResponseEntity<ClienteDTO> buscarClientePorId(@PathVariable Long id){
+        return new ResponseEntity<>(clienteService.obtenerPorId(id),  HttpStatus.OK);
     }
 
     @PostMapping
-    public ClienteDTO crearCliente(@Valid @RequestBody ClienteCreateDTO dto){
-        return clienteService.crear(dto);
+    public ResponseEntity<ClienteDTO> crearCliente(@Valid @RequestBody ClienteCreateDTO dto){
+        return new ResponseEntity<>(clienteService.crear(dto),  HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ClienteDTO editarCliente(@PathVariable Long id,
+    public ResponseEntity<ClienteDTO> editarCliente(@PathVariable Long id,
                                     @Valid @RequestBody ClienteUpdateDTO dto){
-        return clienteService.editar(id, dto);
+        return new ResponseEntity<>(clienteService.editar(id, dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deshabilitarClientePorId(@PathVariable Long id){
+    public ResponseEntity<Void> deshabilitarClientePorId(@PathVariable Long id){
         clienteService.deshabilitarPorId(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
