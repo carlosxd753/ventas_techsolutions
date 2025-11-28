@@ -6,6 +6,8 @@ import com.techsolutions.ventas.dto.MetodoPagoUpdateDTO;
 import com.techsolutions.ventas.service.MetodoPagoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,28 +19,29 @@ public class MetodoPagoController {
     private final MetodoPagoService metodoPagoService;
 
     @GetMapping
-    public List<MetodoPagoDTO> listarMetodosPago(){
-        return metodoPagoService.listarTodos();
+    public ResponseEntity<List<MetodoPagoDTO>> listarMetodosPago(){
+        return new ResponseEntity<>(metodoPagoService.listarTodos(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public MetodoPagoDTO buscarMetodoPagoPorId(@PathVariable Long id){
-        return metodoPagoService.obtenerPorId(id);
+    public ResponseEntity<MetodoPagoDTO> buscarMetodoPagoPorId(@PathVariable Long id){
+        return new ResponseEntity<>(metodoPagoService.obtenerPorId(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public MetodoPagoDTO crearMetodoPago(@Valid @RequestBody MetodoPagoCreateDTO dto){
-        return metodoPagoService.crear(dto);
+    public ResponseEntity<MetodoPagoDTO> crearMetodoPago(@Valid @RequestBody MetodoPagoCreateDTO dto){
+        return new ResponseEntity<>(metodoPagoService.crear(dto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public MetodoPagoDTO editarMetodoPago(@PathVariable Long id,
+    public ResponseEntity<MetodoPagoDTO> editarMetodoPago(@PathVariable Long id,
                                           @Valid @RequestBody MetodoPagoUpdateDTO dto){
-        return metodoPagoService.editar(id, dto);
+        return new ResponseEntity<>(metodoPagoService.editar(id, dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deshabilitarMetodoPagoPorId(@PathVariable Long id){
+    public ResponseEntity<Void> deshabilitarMetodoPagoPorId(@PathVariable Long id){
         metodoPagoService.deshabilitarPorId(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
