@@ -62,6 +62,7 @@ public class ProductoServiceImpl implements ProductoService {
         producto.setStock(dto.stock());
         producto.setPrecioCompra(dto.precioCompra());
         producto.setStockMinimo(dto.stockMinimo());
+        producto.setImagenUrl(dto.imagenUrl());
 
         Producto productoGuardado =  productoRepository.save(producto);
 
@@ -87,6 +88,7 @@ public class ProductoServiceImpl implements ProductoService {
         producto.setStock(dto.stock());
         producto.setPrecioCompra(dto.precioCompra());
         producto.setStockMinimo(dto.stockMinimo());
+        producto.setImagenUrl(dto.imagenUrl());
 
         Producto productoActualizado = productoRepository.save(producto);
 
