@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -48,6 +50,25 @@ public class PedidoServiceImpl implements PedidoService {
         Pedido pedido = new  Pedido();
         pedido.setCliente(cliente);
         pedido.setMetodoPago(metodoPago);
+
+        List<DetallePedido> detalles = new ArrayList<>();
+
+        for (DetallePedidoCreateRequestDTO d : dto.detallePedido()) {
+            Producto producto = productoRepository.findById(d.idProducto())
+                    .orElseThrow(() -> new EntidadNoEncontradaException("No se encontro el producto con id: " + d.idProducto()));
+
+            DetallePedido detalle = new DetallePedido();
+            detalle.setPedido(pedido);
+            detalle.setProducto(producto);
+            detalle.setCantidad(d.cantidad());
+
+            BigDecimal subTotal = producto.getPrecioVenta().multiply(BigDecimal.valueOf(d.cantidad()));
+            detalle.setSubTotal(subTotal);
+
+            detalles.add(detalle);
+        }
+
+        pedido.setDetalles(detalles);
 
         Pedido pedidoGuardado = pedidoRepository.save(pedido);
 
