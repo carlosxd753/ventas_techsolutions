@@ -10,6 +10,5 @@ public interface MetodoPagoService {
     List<MetodoPagoDTO> listarTodos();
     MetodoPagoDTO obtenerPorId(Long id);
     MetodoPagoDTO crear(MetodoPagoCreateDTO dto);
-    MetodoPagoDTO editar(Long id, MetodoPagoUpdateDTO dto);
-    void deshabilitarPorId(Long id);
+    MetodoPagoDTO editar(Long id);
 }
