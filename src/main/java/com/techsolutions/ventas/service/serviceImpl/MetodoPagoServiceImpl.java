@@ -64,12 +64,15 @@ public class MetodoPagoServiceImpl implements MetodoPagoService {
 
     @Override
     @Transactional
-    public MetodoPagoDTO editar(Long id, MetodoPagoUpdateDTO dto) {
+    public MetodoPagoDTO editar(Long id) {
         MetodoPago metodoPago = metodoPagoRepository.findById(id)
                 .orElseThrow(() -> new EntidadNoEncontradaException("No se encontro el metodo de pago con id: " + id));
 
-        metodoPago.setNombre(dto.nombre());
-        metodoPago.setEstado(dto.estado());
+        if (metodoPago.getEstado().equals(Estado.ACTIVO)){
+            metodoPago.setEstado(Estado.INACTIVO);
+        } else {
+            metodoPago.setEstado(Estado.ACTIVO);
+        }
 
         MetodoPago metodoPagoActualizado = metodoPagoRepository.save(metodoPago);
 
@@ -79,16 +82,5 @@ public class MetodoPagoServiceImpl implements MetodoPagoService {
                 metodoPagoActualizado.getEstado(),
                 metodoPagoActualizado.getFecha_creacion()
         );
-    }
-
-    @Override
-    @Transactional
-    public void deshabilitarPorId(Long id) {
-        MetodoPago metodoPago = metodoPagoRepository.findById(id)
-                .orElseThrow(() -> new EntidadNoEncontradaException("No se encontro el metodo de pago con id: " + id));
-
-        metodoPago.setEstado(Estado.INACTIVO);
-
-        metodoPagoRepository.save(metodoPago);
     }
 }

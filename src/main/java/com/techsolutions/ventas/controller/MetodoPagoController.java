@@ -34,14 +34,7 @@ public class MetodoPagoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MetodoPagoDTO> editarMetodoPago(@PathVariable Long id,
-                                          @Valid @RequestBody MetodoPagoUpdateDTO dto){
-        return new ResponseEntity<>(metodoPagoService.editar(id, dto), HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deshabilitarMetodoPagoPorId(@PathVariable Long id){
-        metodoPagoService.deshabilitarPorId(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<MetodoPagoDTO> editarEstadoMetodoPago(@PathVariable Long id){
+        return new ResponseEntity<>(metodoPagoService.editar(id), HttpStatus.OK);
     }
 }
