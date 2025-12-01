@@ -18,7 +18,7 @@ public class Producto extends BaseModel{
     @NotBlank(message = "el nombre obligatorio")
     @Size(min = 2, max = 100, message = "el nombre debe tener entre 2 y 100 caracteres")
     private String nombre;
-    private BigDecimal precioVenta;
+    private BigDecimal precioBase;
     private int stock;
     private BigDecimal precioCompra;
     private int stockMinimo;
