@@ -9,6 +9,8 @@ import com.techsolutions.ventas.repository.ProductoRepository;
 import com.techsolutions.ventas.service.PrecioService;
 import com.techsolutions.ventas.service.ProductoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,24 +24,28 @@ public class ProductoServiceImpl implements ProductoService {
     private final PrecioService precioService;
 
     @Override
-    public List<ProductoDTO> listarTodos() {
-        List<Producto> productos =  productoRepository.findAll();
+    public Page<ProductoDTO> listarTodos(String busqueda, Pageable pageable) {
+        Page<Producto> productos;
 
-        return productos.stream()
-                .map(p -> {
-                    BigDecimal precioVenta = precioService.obtenerPrecio(p.getPrecioBase());
-                    return new ProductoDTO(
-                            p.getId(),
-                            p.getNombre(),
-                            precioVenta,
-                            p.getStock(),
-                            p.getPrecioCompra(),
-                            p.getStockMinimo(),
-                            p.getImagenUrl(),
-                            p.getFecha_creacion()
-                    );
-                })
-                .toList();
+        if (busqueda == null || busqueda.isBlank()){
+            productos = productoRepository.findAll(pageable);
+        } else {
+            productos = productoRepository.findByNombreContainingIgnoreCase(busqueda, pageable);
+        }
+
+        return productos.map(p -> {
+            BigDecimal precioVenta = precioService.obtenerPrecio(p.getPrecioBase());
+            return new ProductoDTO(
+                    p.getId(),
+                    p.getNombre(),
+                    precioVenta,
+                    p.getStock(),
+                    p.getPrecioCompra(),
+                    p.getStockMinimo(),
+                    p.getImagenUrl(),
+                    p.getFecha_creacion()
+            );
+        });
     }
 
     @Override
