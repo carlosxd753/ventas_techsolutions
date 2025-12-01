@@ -5,6 +5,8 @@ import com.techsolutions.ventas.dto.ProductoRequestDTO;
 import com.techsolutions.ventas.service.ProductoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,15 +18,9 @@ public class ProductoController {
     private final ProductoService productoService;
 
     @GetMapping
-    public List<ProductoDTO> listarProductos(){
-        System.out.println("TEST");
-        System.out.println("TEST2");
-        System.out.println("TEST3");
-        System.out.println("TEST4");
-        System.out.println("TEST5");
-        System.out.println("TEST6");
-        System.out.println("TEST7");
-        return productoService.listarTodos();
+    public Page<ProductoDTO> listarProductos(@RequestParam(required = false) String busqueda,
+                                             Pageable pageable){
+        return productoService.listarTodos(busqueda, pageable);
     }
 
     @GetMapping("/{id}")
