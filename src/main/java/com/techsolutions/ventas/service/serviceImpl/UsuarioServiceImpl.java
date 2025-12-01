@@ -12,6 +12,7 @@ import com.techsolutions.ventas.repository.RolRepository;
 import com.techsolutions.ventas.repository.UsuarioRepository;
 import com.techsolutions.ventas.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ import java.util.List;
 public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final RolRepository rolRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<UsuarioDTO> listarTodos() {
@@ -71,7 +73,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = new Usuario();
 
         usuario.setCorreo(dto.correo());
-        usuario.setPassword(dto.password());
+        usuario.setPassword(passwordEncoder.encode(dto.password()));
         usuario.setRol(rol);
 
         Usuario usuarioGuardado = usuarioRepository.save(usuario);

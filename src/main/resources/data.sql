@@ -39,11 +39,11 @@ INSERT INTO metodo_pago (nombre, estado, fecha_creacion, fecha_actualizacion) VA
 ('Paypal', 'ACTIVO', NOW(), NOW());
 
 INSERT INTO usuario (correo, password, estado, id_rol, fecha_creacion, fecha_actualizacion) VALUES
-('administrador@techsolutions.com', '123456', 'ACTIVO', 1, NOW(), NOW()),
-('gerente@techsolutions.com', '123456', 'ACTIVO', 2, NOW(), NOW()),
-('contador@techsolutions.com', '123456', 'ACTIVO', 3, NOW(), NOW()),
-('compras@techsolutions.com', '123456', 'ACTIVO', 4, NOW(), NOW()),
-('ventas@techsolutions.com', '123456', 'ACTIVO', 5, NOW(), NOW());
+('administrador@techsolutions.com', '$2a$12$fHggrMLZ.NIGfnMcdXexN.DP27IlqEA.JInPvVdj6Ivkj867X2BbC', 'ACTIVO', 1, NOW(), NOW()),
+('gerente@techsolutions.com', '$2a$12$fHggrMLZ.NIGfnMcdXexN.DP27IlqEA.JInPvVdj6Ivkj867X2BbC', 'ACTIVO', 2, NOW(), NOW()),
+('contador@techsolutions.com', '$2a$12$fHggrMLZ.NIGfnMcdXexN.DP27IlqEA.JInPvVdj6Ivkj867X2BbC', 'ACTIVO', 3, NOW(), NOW()),
+('compras@techsolutions.com', '$2a$12$fHggrMLZ.NIGfnMcdXexN.DP27IlqEA.JInPvVdj6Ivkj867X2BbC', 'ACTIVO', 4, NOW(), NOW()),
+('ventas@techsolutions.com', '$2a$12$fHggrMLZ.NIGfnMcdXexN.DP27IlqEA.JInPvVdj6Ivkj867X2BbC', 'ACTIVO', 5, NOW(), NOW());
 
 INSERT INTO pedido (id_cliente, id_metodo_pago, fecha_creacion, fecha_actualizacion) VALUES
 (1, 1, NOW(), NOW()),
