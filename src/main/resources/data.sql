@@ -1,4 +1,4 @@
-INSERT INTO producto (nombre, precio_venta, stock, precio_compra, stock_minimo, estado, imagen_url, fecha_creacion, fecha_actualizacion) VALUES
+INSERT INTO producto (nombre, precio_base, stock, precio_compra, stock_minimo, estado, imagen_url, fecha_creacion, fecha_actualizacion) VALUES
 ('Laptop Lenovo IdeaPad 5', 2800.00, 12, 2300.00, 5, 'ACTIVO', 'https://i.imgur.com/6E5qONu.png', NOW(), NOW()),
 ('Mouse Logitech G502', 230.00, 25, 160.00, 8, 'ACTIVO', 'https://i.imgur.com/DXfnHso.png', NOW(), NOW()),
 ('Teclado Mecánico Redragon Kumara', 190.00, 30, 120.00, 10, 'ACTIVO', 'https://i.imgur.com/pfxJYbh.png', NOW(), NOW()),

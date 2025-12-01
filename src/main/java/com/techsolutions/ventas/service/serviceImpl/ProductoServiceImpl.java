@@ -6,33 +6,39 @@ import com.techsolutions.ventas.enums.Estado;
 import com.techsolutions.ventas.exceptions.EntidadNoEncontradaException;
 import com.techsolutions.ventas.model.Producto;
 import com.techsolutions.ventas.repository.ProductoRepository;
+import com.techsolutions.ventas.service.PrecioService;
 import com.techsolutions.ventas.service.ProductoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ProductoServiceImpl implements ProductoService {
     private final ProductoRepository productoRepository;
+    private final PrecioService precioService;
 
     @Override
     public List<ProductoDTO> listarTodos() {
         List<Producto> productos =  productoRepository.findAll();
 
         return productos.stream()
-                .map(p -> new ProductoDTO(
-                        p.getId(),
-                        p.getNombre(),
-                        p.getPrecioVenta(),
-                        p.getStock(),
-                        p.getPrecioCompra(),
-                        p.getStockMinimo(),
-                        p.getImagenUrl(),
-                        p.getFecha_creacion()
-                ))
+                .map(p -> {
+                    BigDecimal precioVenta = precioService.obtenerPrecio(p.getPrecioBase());
+                    return new ProductoDTO(
+                            p.getId(),
+                            p.getNombre(),
+                            precioVenta,
+                            p.getStock(),
+                            p.getPrecioCompra(),
+                            p.getStockMinimo(),
+                            p.getImagenUrl(),
+                            p.getFecha_creacion()
+                    );
+                })
                 .toList();
     }
 
@@ -41,10 +47,12 @@ public class ProductoServiceImpl implements ProductoService {
         Producto producto = productoRepository.findById(id)
                 .orElseThrow(() -> new EntidadNoEncontradaException("No se encontro el producto con id: " + id));
 
+        BigDecimal precioVenta = precioService.obtenerPrecio(producto.getPrecioBase());
+
         return new ProductoDTO(
                 producto.getId(),
                 producto.getNombre(),
-                producto.getPrecioVenta(),
+                precioVenta,
                 producto.getStock(),
                 producto.getPrecioCompra(),
                 producto.getStockMinimo(),
@@ -58,7 +66,7 @@ public class ProductoServiceImpl implements ProductoService {
     public ProductoDTO crear(ProductoRequestDTO dto) {
         Producto producto = new Producto();
         producto.setNombre(dto.nombre());
-        producto.setPrecioVenta(dto.precioVenta());
+        producto.setPrecioBase(dto.precioVenta());
         producto.setStock(dto.stock());
         producto.setPrecioCompra(dto.precioCompra());
         producto.setStockMinimo(dto.stockMinimo());
@@ -66,10 +74,12 @@ public class ProductoServiceImpl implements ProductoService {
 
         Producto productoGuardado =  productoRepository.save(producto);
 
+        BigDecimal precioVenta = precioService.obtenerPrecio(producto.getPrecioBase());
+
         return new ProductoDTO(
                 productoGuardado.getId(),
                 productoGuardado.getNombre(),
-                productoGuardado.getPrecioVenta(),
+                precioVenta,
                 productoGuardado.getStock(),
                 productoGuardado.getPrecioCompra(),
                 productoGuardado.getStockMinimo(),
@@ -84,7 +94,7 @@ public class ProductoServiceImpl implements ProductoService {
                 .orElseThrow(() -> new EntidadNoEncontradaException("No se encontro el producto con id: " + id));
 
         producto.setNombre(dto.nombre());
-        producto.setPrecioVenta(dto.precioVenta());
+        producto.setPrecioBase(dto.precioVenta());
         producto.setStock(dto.stock());
         producto.setPrecioCompra(dto.precioCompra());
         producto.setStockMinimo(dto.stockMinimo());
@@ -92,10 +102,12 @@ public class ProductoServiceImpl implements ProductoService {
 
         Producto productoActualizado = productoRepository.save(producto);
 
+        BigDecimal precioVenta = precioService.obtenerPrecio(producto.getPrecioBase());
+
         return new ProductoDTO(
                 productoActualizado.getId(),
                 productoActualizado.getNombre(),
-                productoActualizado.getPrecioVenta(),
+                precioVenta,
                 productoActualizado.getStock(),
                 productoActualizado.getPrecioCompra(),
                 productoActualizado.getStockMinimo(),

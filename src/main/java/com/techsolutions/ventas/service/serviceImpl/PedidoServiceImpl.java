@@ -5,6 +5,7 @@ import com.techsolutions.ventas.exceptions.EntidadNoEncontradaException;
 import com.techsolutions.ventas.model.*;
 import com.techsolutions.ventas.repository.*;
 import com.techsolutions.ventas.service.PedidoService;
+import com.techsolutions.ventas.service.PrecioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ public class PedidoServiceImpl implements PedidoService {
     private final ClienteRepository clienteRepository;
     private final MetodoPagoRepository metodoPagoRepository;
     private final ProductoRepository productoRepository;
+    private final PrecioService precioService;
 
     @Override
     public List<PedidoDTO> listarTodos() {
@@ -62,7 +64,9 @@ public class PedidoServiceImpl implements PedidoService {
             detalle.setProducto(producto);
             detalle.setCantidad(d.cantidad());
 
-            BigDecimal subTotal = producto.getPrecioVenta().multiply(BigDecimal.valueOf(d.cantidad()));
+            BigDecimal precioUsandoStrategy = precioService.obtenerPrecio(producto.getPrecioBase());
+
+            BigDecimal subTotal = precioUsandoStrategy.multiply(BigDecimal.valueOf(d.cantidad()));
             detalle.setSubTotal(subTotal);
 
             detalles.add(detalle);
@@ -91,7 +95,10 @@ public class PedidoServiceImpl implements PedidoService {
             detalle.setPedido(pedido);
             detalle.setProducto(producto);
             detalle.setCantidad(dpDTO.cantidad());
-            detalle.setSubTotal(dpDTO.subTotal());
+
+            BigDecimal precioUsandoStrategy = precioService.obtenerPrecio(producto.getPrecioBase());
+            BigDecimal subTotal = precioUsandoStrategy.multiply(BigDecimal.valueOf(dpDTO.cantidad()));
+            detalle.setSubTotal(subTotal);
 
             pedido.getDetalles().add(detalle);
         }
@@ -131,7 +138,7 @@ public class PedidoServiceImpl implements PedidoService {
                                 new ProductoDTO(
                                         dp.getProducto().getId(),
                                         dp.getProducto().getNombre(),
-                                        dp.getProducto().getPrecioVenta(),
+                                        dp.getProducto().getPrecioBase(),
                                         dp.getProducto().getStock(),
                                         dp.getProducto().getPrecioCompra(),
                                         dp.getProducto().getStockMinimo(),
