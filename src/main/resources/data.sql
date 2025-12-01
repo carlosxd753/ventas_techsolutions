@@ -20,6 +20,9 @@ INSERT INTO producto (nombre, precio_base, stock, precio_compra, stock_minimo, e
 ('Disco Duro Externo WD 2TB', 340.00, 20, 260.00, 7, 'ACTIVO', 'https://i.imgur.com/k61RjDB.png', NOW(), NOW()),
 ('Router TP-Link Archer AX5400', 680.00, 9, 520.00, 3, 'ACTIVO', 'https://i.imgur.com/QXlpWiw.png', NOW(), NOW());
 
+INSERT INTO config_precio (estrategia_precio, porcentaje_descuento_global, factor_dinamico_global, fecha_creacion, fecha_actualizacion) VALUES
+('ESTANDAR', 0.00, 1.00, NOW(), NOW());
+
 INSERT INTO rol (nombre, estado, fecha_creacion, fecha_actualizacion) VALUES
 ('ADMINISTRADOR', 'ACTIVO', NOW(), NOW()),
 ('GERENTE', 'ACTIVO', NOW(), NOW()),
